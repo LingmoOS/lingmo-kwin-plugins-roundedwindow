@@ -80,12 +80,12 @@
 
     <group name="Shadow">
         <entry name="ActiveShadowAlpha" type="Int">
-            <default>255</default>
+            <default>0</default>
             <min>0</min>
             <max>255</max>
         </entry>
         <entry name="InactiveShadowAlpha" type="Int">
-            <default>255</default>
+            <default>0</default>
             <min>0</min>
             <max>255</max>
         </entry>
