@@ -1,0 +1,5 @@
+lingmo-kwin-plugins-roundedwindow (1.0.0) UNRELEASED; urgency=low
+
+  * Make the Rounded window plugin as a separate repo for easier maintenance.
+
+ -- Elysia <c.elysia@foxmail.com>  Wen, 29 May 2024 13:13:00 +0800

@@ -8,7 +8,7 @@ set(CMAKE_MODULE_PATH
         ${ECM_MODULE_PATH}
         ${ECM_KDE_MODULE_DIR}
 )
-if(ECM_VERSION VERSION_GREATER "5.200.0")
-    set(QT_MIN_VERSION "6.4.0")
-    set(QT_MAJOR_VERSION 6)
-endif()
+#if(ECM_VERSION VERSION_GREATER "5.200.0")
+#    set(QT_MIN_VERSION "6.4.0")
+#    set(QT_MAJOR_VERSION 6)
+#endif()

@@ -135,6 +135,16 @@ ShapeCorners::Effect::reconfigure(const ReconfigureFlags flags)
 
 void ShapeCorners::Effect::prePaintWindow(KWin::EffectWindow *w, KWin::WindowPrePaintData &data, std::chrono::milliseconds time)
 {
+    // Check added in Lingmo DE
+    if (w->isDesktop()
+        || w->isMenu()
+        || w->isDock()
+        || w->isPopupWindow()
+        || w->isPopupMenu()) {
+        OffscreenEffect::prePaintWindow(w, data, time);
+        return;
+    }
+
     auto window_iterator = m_managed.find(w);
     if (!m_shaderManager.IsValid()
         || window_iterator == m_managed.end()
@@ -181,6 +191,21 @@ void ShapeCorners::Effect::drawWindow(const KWin::RenderTarget &renderTarget, co
 void ShapeCorners::Effect::drawWindow(KWin::EffectWindow *w, int mask, const QRegion &region,
                                     KWin::WindowPaintData &data) {
 #endif
+    // Check added in Lingmo DE
+    if (w->isDesktop()
+        || w->isMenu()
+        || w->isDock()
+        || w->isPopupWindow()
+        || w->isPopupMenu()) {
+        unredirect(w);
+#if QT_VERSION_MAJOR >= 6
+        OffscreenEffect::drawWindow(renderTarget, viewport, w, mask, region, data);
+#else
+        OffscreenEffect::drawWindow(w, mask, region, data);
+#endif
+        return;
+    }
+
     auto window_iterator = m_managed.find(w);
     if (!m_shaderManager.IsValid()
         || window_iterator == m_managed.end()
