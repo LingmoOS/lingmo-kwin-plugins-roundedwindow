@@ -38,7 +38,7 @@
             <max>20</max>
         </entry>
         <entry name="InactiveOutlineThickness" type="Double">
-            <default>1</default>
+            <default>0</default>
             <min>0</min>
             <max>20</max>
         </entry>
@@ -116,7 +116,7 @@
             <max>20</max>
         </entry>
         <entry name="InactiveSecondOutlineThickness" type="Double">
-            <default>0.75</default>
+            <default>0</default>
             <min>0</min>
             <max>20</max>
         </entry>
