@@ -1,4 +1,4 @@
-lingmo-kwin-plugins-roundedwindow (1.0.0+2) UNRELEASED; urgency=low
+lingmo-kwin-plugins-roundedwindow (1.0.0-2) UNRELEASED; urgency=low
 
   * Make the Rounded window plugin as a separate repo for easier maintenance.
 
