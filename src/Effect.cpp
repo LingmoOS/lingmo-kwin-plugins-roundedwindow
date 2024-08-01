@@ -135,16 +135,6 @@ ShapeCorners::Effect::reconfigure(const ReconfigureFlags flags)
 
 void ShapeCorners::Effect::prePaintWindow(KWin::EffectWindow *w, KWin::WindowPrePaintData &data, std::chrono::milliseconds time)
 {
-    // Check added in Lingmo DE
-    if (w->isDesktop()
-        || w->isMenu()
-        || w->isDock()
-        || w->isPopupWindow()
-        || w->isPopupMenu()) {
-        OffscreenEffect::prePaintWindow(w, data, time);
-        return;
-    }
-
     auto window_iterator = m_managed.find(w);
     if (!m_shaderManager.IsValid()
         || window_iterator == m_managed.end()
@@ -191,21 +181,6 @@ void ShapeCorners::Effect::drawWindow(const KWin::RenderTarget &renderTarget, co
 void ShapeCorners::Effect::drawWindow(KWin::EffectWindow *w, int mask, const QRegion &region,
                                     KWin::WindowPaintData &data) {
 #endif
-    // Check added in Lingmo DE
-    if (w->isDesktop()
-        || w->isMenu()
-        || w->isDock()
-        || w->isPopupWindow()
-        || w->isPopupMenu()) {
-        unredirect(w);
-#if QT_VERSION_MAJOR >= 6
-        OffscreenEffect::drawWindow(renderTarget, viewport, w, mask, region, data);
-#else
-        OffscreenEffect::drawWindow(w, mask, region, data);
-#endif
-        return;
-    }
-
     auto window_iterator = m_managed.find(w);
     if (!m_shaderManager.IsValid()
         || window_iterator == m_managed.end()
@@ -248,54 +223,17 @@ QString ShapeCorners::Effect::get_window_titles() const {
     return response.join("\n");
 }
 
-template<bool vertical>
-bool ShapeCorners::Effect::checkTiled(double window_start, const double& screen_end, double gap) {
-    if (window_start == screen_end) {
-        return true;    // Found the last chain of tiles
-    } else if (window_start > screen_end) {
-        return false;
-    }
-
-    const bool firstGap = (gap == -1);
-
-    bool r = false;
-    for (auto& [w, window]: m_managed) {
-
-        if (firstGap) {
-            gap = std::get<vertical>(std::make_pair(w->x(), w->y())) - window_start;
-            if(gap > 40)        // There is no way that a window is tiled and has such a big gap.
-                continue;
-            window_start += gap;
-        }
-
-        if (std::get<vertical>(std::make_pair(w->x(), w->y())) == window_start) {
-            if (std::get<vertical>(std::make_pair(w->width(), w->height())) + gap > 0) {
-                if (checkTiled<vertical>(window_start + std::get<vertical>(std::make_pair(w->width(), w->height())) + gap, screen_end, gap)) {
-                    window.isTiled = true;   // Mark every tile as you go back to the first.
-                    r = true;
-                }
-            }
-        }
-
-        if(firstGap) {
-            window_start -= gap;    // Revert changes.
-        }
-    }
-    return r;
-}
-
 void ShapeCorners::Effect::checkTiled() {
-    for (auto& [ptr, window]: m_managed) {     // Delete tile memory.
-        window.isTiled = false;
-    }
+    TileChecker tileChecker (m_managed);
+    tileChecker.clearTiles();
+
     if (!Config::disableRoundTile() && !Config::disableOutlineTile()) {
         return;
     }
 
     for (const auto& screen: KWin::effects->screens()) {        // Per every screen
         const auto& geometry = screen->geometry();
-        checkTiled<false>(geometry.x(), geometry.x() + geometry.width()); // Check horizontally
-        checkTiled<true>(geometry.y(), geometry.y() + geometry.height()); // Check vertically
+        tileChecker.checkTiles(geometry);
     }
 }
 
