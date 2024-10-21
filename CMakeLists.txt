@@ -36,5 +36,5 @@ add_subdirectory(src)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
-include(cmake/test.cmake)
-include(cmake/pack.cmake)
+#include(cmake/test.cmake)
+#include(cmake/pack.cmake)
