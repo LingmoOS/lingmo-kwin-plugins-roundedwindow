@@ -160,6 +160,15 @@
         <entry name="Inclusions" type="StringList">
         </entry>
         <entry name="Exclusions" type="StringList">
+            <default code="true">
+                {
+                    QStringLiteral("lingmo-statusbar"),
+                    QStringLiteral("lingmo-filemanager"),
+                    QStringLiteral("lingmo-launcher"),
+                    QStringLiteral("lingmo-screenshot"),
+                    QStringLiteral("lingmo-dock")
+                }
+            </default>
         </entry>
         <entry name="IncludeNormalWindows" type="Bool">
             <default>true</default>
