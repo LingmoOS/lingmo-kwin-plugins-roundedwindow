@@ -1,3 +1,9 @@
+lingmo-kwin-plugins-roundedwindow (1.0.2) UNRELEASED; urgency=low
+
+  * Merge upstream upgrade.
+
+ -- Elysia <c.elysia@foxmail.com>  Mon, 21 Oct 2024 23:56:11 +0800
+
 lingmo-kwin-plugins-roundedwindow (1.0.1) UNRELEASED; urgency=low
 
   * Merge upstream upgrade.

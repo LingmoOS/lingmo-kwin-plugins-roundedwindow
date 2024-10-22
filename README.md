@@ -47,7 +47,7 @@ You can add shadows for specific windows using the hack below. I don't know how 
 1. In [ System settings ] -> [ Window management ] -> [ Window rules ] -> [ Appearance & Fixes ]:
 
    **Add [steam] and set [ No titlebar ] and frame to [ No ]**
-   
+
 2. In [ System settings ] -> [ Application Style ] -> [ Window decoration ] -> [ Breeze theme setting ] -> [ Window specific overrides ]:
 
    **Add [steam] and set [ Hide Window title bar ] to [ Yes ].**

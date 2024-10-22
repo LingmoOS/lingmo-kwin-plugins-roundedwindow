@@ -5,7 +5,7 @@
                           http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
     <kcfgfile name="kwinrc"/>
 
-    <group name="ًRound-Corners">
+    <group name="Round-Corners">
         <entry name="Size" type="UInt">
             <default>11</default>
         </entry>
@@ -33,8 +33,8 @@
 
     <group name="PrimaryOutline">
         <entry name="OutlineThickness" type="Double">
-            <default>-1</default>
-            <min>-1</min>
+            <default>0</default>
+            <min>0</min>
             <max>20</max>
         </entry>
         <entry name="InactiveOutlineThickness" type="Double">
@@ -49,12 +49,12 @@
             <default>black</default>
         </entry>
         <entry name="ActiveOutlineAlpha" type="Int">
-            <default>255</default>
+            <default>0</default>
             <min>0</min>
             <max>255</max>
         </entry>
         <entry name="InactiveOutlineAlpha" type="Int">
-            <default>255</default>
+            <default>0</default>
             <min>0</min>
             <max>255</max>
         </entry>
@@ -80,12 +80,12 @@
 
     <group name="Shadow">
         <entry name="ActiveShadowAlpha" type="Int">
-            <default>0</default>
+            <default>255</default>
             <min>0</min>
             <max>255</max>
         </entry>
         <entry name="InactiveShadowAlpha" type="Int">
-            <default>0</default>
+            <default>255</default>
             <min>0</min>
             <max>255</max>
         </entry>
@@ -111,12 +111,12 @@
 
     <group name="SecondOutline">
         <entry name="SecondOutlineThickness" type="Double">
-            <default>-1</default>
-            <min>-1</min>
+            <default>0.0</default>
+            <min>0</min>
             <max>20</max>
         </entry>
         <entry name="InactiveSecondOutlineThickness" type="Double">
-            <default>0</default>
+            <default>0.0</default>
             <min>0</min>
             <max>20</max>
         </entry>
@@ -127,12 +127,12 @@
             <default>black</default>
         </entry>
         <entry name="ActiveSecondOutlineAlpha" type="Int">
-            <default>255</default>
+            <default>0</default>
             <min>0</min>
             <max>255</max>
         </entry>
         <entry name="InactiveSecondOutlineAlpha" type="Int">
-            <default>255</default>
+            <default>0</default>
             <min>0</min>
             <max>255</max>
         </entry>
@@ -160,6 +160,15 @@
         <entry name="Inclusions" type="StringList">
         </entry>
         <entry name="Exclusions" type="StringList">
+            <default code="true">
+                {
+                    QStringLiteral("lingmo-statusbar"),
+                    QStringLiteral("lingmo-filemanager"),
+                    QStringLiteral("lingmo-launcher"),
+                    QStringLiteral("lingmo-screenshot"),
+                    QStringLiteral("lingmo-dock")
+                }
+            </default>
         </entry>
         <entry name="IncludeNormalWindows" type="Bool">
             <default>true</default>
