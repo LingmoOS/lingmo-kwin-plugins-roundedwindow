@@ -30,6 +30,7 @@ Package: lingmo-kwin-plugins-roundedwindow
 Architecture: any
 Depends: qml-module-qtquick-controls2,
          qml-module-qtquick2,
+         systemsettings,
          ${misc:Depends},
          ${shlibs:Depends}
 Description: LingmoOS KWin Plugins - Rounded Window
